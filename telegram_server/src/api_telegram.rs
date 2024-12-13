@@ -94,7 +94,7 @@ pub async fn get_expanses_by_last(amount: i32) -> String{
             let body = res.text().await.unwrap_or_else(|_| "Gagal membaca response".to_string());
             if status.is_success() {
                 let data: Vec<Value> = serde_json::from_str(&body).unwrap();
-                let mut hasil = String::from("Berikut adalah data pengeluaranmu:\n\n");
+                let mut hasil = format!("Berikut adalah {} data pengeluaranmu terakhir:\n\n", amount);
                 for item in data.iter().rev() {
                     let id = item["id"].as_i64().unwrap_or(0);
                     let name = item["name"].as_str().unwrap_or("unknown");
@@ -135,7 +135,7 @@ pub async fn get_expanses_by_day(amount: i32) -> String{
             let body = res.text().await.unwrap_or_else(|_| "Gagal membaca response".to_string());
             if status.is_success() {
                 let data: Vec<Value> = serde_json::from_str(&body).unwrap();
-                let mut hasil = String::from("Berikut adalah data pengeluaranmu:\n\n");
+                let mut hasil = format!("Berikut adalah data pengeluaranmu {} hari terakhir:\n\n", amount);
                 for item in data {
                     let id = item["id"].as_i64().unwrap_or(0);
                     let name = item["name"].as_str().unwrap_or("unknown");
