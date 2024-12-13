@@ -120,7 +120,6 @@ pub async fn get_expanses_by_day(amount: i32) -> String{
     dotenv().ok();
     let base_url = env::var("URL_SERVER").expect("URL_SERVER must be set");
     let url = format!("{}/expenses/day/{}", base_url, amount);
-    //let url = format!("http://localhost:8080/expenses/day/{}", amount);
     let expense = models::LastExpense {
         amount,
     };
@@ -161,7 +160,6 @@ pub async fn get_expanses_by_id(amount: i32) -> String{
     dotenv().ok();
     let base_url = env::var("URL_SERVER").expect("URL_SERVER must be set");
     let url = format!("{}/expenses/id/{}", base_url, amount);
-    //let url = format!("http://localhost:8080/expenses/id/{}", amount);
     let expense = models::LastExpense {
         amount,
     };
@@ -203,7 +201,6 @@ pub async fn get_status_server() -> String {
     dotenv().ok();
     let base_url = env::var("URL_SERVER").expect("URL_SERVER must be set");
     let url = format!("{}/psql/status", base_url);
-    //let url = "http://localhost:8080/psql/status";
     let client = Client::new();
     let response = client.get(url)
         .send()
