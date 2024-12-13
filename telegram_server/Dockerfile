@@ -27,7 +27,7 @@ WORKDIR /app
 
 # Menyalin hasil build dari container builder
 #COPY --from=builder /app/target/debug/telegram_server
-COPY --from=builder /app/target/target/telegram_server /app/telegram_server
+COPY --from=builder /app/target/release/telegram_server /app/telegram_server
 
 # Menyalin file .env ke dalam container
 COPY .env .env
