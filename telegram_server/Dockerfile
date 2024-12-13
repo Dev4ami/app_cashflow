@@ -22,6 +22,9 @@ FROM ubuntu:latest
 # Install libssl-dev agar aplikasi Rust dapat terhubung ke SSL (jika diperlukan)
 RUN apt-get update && apt-get install -y libssl-dev pkg-config ca-certificates && rm -rf /var/lib/apt/lists/*
 RUN update-ca-certificates
+RUN apt-get install tzdata -y && ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
+RUN echo "Asia/Jakarta" | tee /etc/timezone
+
 # Menentukan direktori untuk aplikasi
 WORKDIR /app
 
