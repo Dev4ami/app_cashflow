@@ -1,0 +1,12 @@
+[package]
+name = "actix_web"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+actix-web = "4"
+serde = { version = "1.0.215", features = ["derive"] }
+dotenv = "0.15"
+sqlx = { version = "0.8.2", features = ["postgres", "runtime-tokio-native-tls", "chrono"] }
+tokio = { version = "1", features = ["full"] }
+chrono = { version = "0.4", features = ["serde"] }

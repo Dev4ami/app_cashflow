@@ -1,0 +1,39 @@
+###
+POST http://localhost:8080/expenses/add
+Content-Type: aplication/json
+
+//{"name":"kopi hitam", "amount": 11500, "user_id": "test"}
+{"name":"kopi hitam", "amount": 11500, "user_id": "test", "created_at": "2024-12-06T02:34:16.728254+07:00"}
+###
+DELETE http://localhost:8080/expenses/delete
+Content-Type: application/json
+
+{"id": 1}
+
+###
+GET http://localhost:8080/expenses/all
+Content-Type: application/json
+
+
+###
+GET http://localhost:8080/expenses/id/10
+Content-Type: application/json
+
+
+###
+GET http://localhost:8080/expenses/last/10
+Content-Type: application/json
+
+
+###
+GET http://localhost:8080/log/all
+Content-Type: application/json
+
+
+###
+GET http://localhost:8080/log/last/10
+Content-Type: application/json
+
+###
+GET http://localhost:8080/psql/status
+Content-Type: application/json
