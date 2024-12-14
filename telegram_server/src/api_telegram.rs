@@ -8,6 +8,7 @@ use serde_json::Value;
 
 pub async fn cmd_start() -> String {
     let server_status = get_status_server().await;
+    let actix_status = get_actix_server().await;
 
     return format!("
 Server Status
@@ -15,7 +16,7 @@ Teloxide  : Online
 Postgre   : {}
 Actix Web : {}
 ketik /help untuk bantuan
-", server_status, server_status)
+", actix_status, server_status)
 
 
 }
@@ -201,6 +202,27 @@ pub async fn get_status_server() -> String {
     dotenv().ok();
     let base_url = env::var("URL_SERVER").expect("URL_SERVER must be set");
     let url = format!("{}/psql/status", base_url);
+    let client = Client::new();
+    let response = client.get(url)
+        .send()
+        .await;
+    match response {
+        Ok(res) =>{
+            if res.status().is_success() {
+                "Online".to_string()
+            } else {
+                "Offline".to_string()
+            }
+
+        }
+        Err(e) => format!("Offline {}", e),
+    }
+}
+
+pub async fn get_actix_server() -> String {
+    dotenv().ok();
+    let base_url = env::var("URL_SERVER").expect("URL_SERVER must be set");
+    let url = format!("{}", base_url);
     let client = Client::new();
     let response = client.get(url)
         .send()
