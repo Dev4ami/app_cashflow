@@ -186,7 +186,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "actix_web"
+name = "actix_web_server"
 version = "0.1.0"
 dependencies = [
  "actix-web",
