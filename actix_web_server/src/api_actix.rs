@@ -66,7 +66,7 @@ pub async fn get_expenses_by_last(last: web::Path<String>, db_pool: web::Data<My
 pub async fn get_expenses_by_day(day: web::Path<String>, db_pool: web::Data<MySqlPool>) -> impl Responder {
     add_log("GET", &format!("/expenses/day/{}", day)).await;
 
-    let query = format!("SELECT * FROM data WHERE created_at >= NOW() - INTERVAL '{} days'", day);
+    let query = format!("SELECT * FROM data WHERE created_at >= NOW() - INTERVAL {} day", day);
     match sqlx::query_as::<_, models::Expense>(&query)
         .fetch_all(db_pool.get_ref())
         .await
